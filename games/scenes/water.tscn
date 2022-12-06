@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/water.gd" type="Script" id=1]
+[ext_resource path="res://summer/image 1.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=42]
+code = "shader_type canvas_item;
+
+uniform vec2 scale;
+uniform float y_zoom;
+uniform vec4 water_color: hint_color;
+uniform sampler2D noise;
+uniform vec2 distortion_scale;
+uniform float intensity;
+uniform float speed;
+uniform float wave_amplitude;
+uniform float wave_speed;
+uniform float wave_period;
+
+void fragment(){
+	
+	float waves =UV.y * scale.y + sin(UV.x *scale.x/ wave_period - TIME * wave_speed) * cos(0.2 * UV.x * scale.x/wave_period + TIME-wave_speed)
+	* wave_amplitude - wave_amplitude;wave_period;
+	
+	float distortion = texture(noise, UV*scale+distortion_scale + TIME* speed).x;
+	distortion -= 0.5; 
+	
+	float uv_height = SCREEN_PIXEL_SIZE.y/ TEXTURE_PIXEL_SIZE.y;
+	vec2 reflected_screenuv = vec2(SCREEN_UV.x - distortion * intensity, SCREEN_UV.y + uv_height * UV.y * 2.0);
+	
+	vec4 reflection = texture (SCREEN_TEXTURE, reflected_screenuv);
+	
+	COLOR.rgb = mix(reflection.rgb, water_color.rgb, water_color.a);
+	COLOR.a = smoothstep(0.1, 0.13,waves);
+
+}"
+
+[sub_resource type="OpenSimplexNoise" id=44]
+period = 156.1
+
+[sub_resource type="NoiseTexture" id=45]
+seamless = true
+noise = SubResource( 44 )
+
+[sub_resource type="ShaderMaterial" id=43]
+shader = SubResource( 42 )
+shader_param/scale = Vector2( 9, 5 )
+shader_param/y_zoom = 0.0
+shader_param/water_color = Color( 0.317647, 0.823529, 0.956863, 0.537255 )
+shader_param/distortion_scale = Vector2( 0.5, 0.1 )
+shader_param/intensity = -0.01
+shader_param/speed = 0.8
+shader_param/wave_amplitude = 0.19
+shader_param/wave_speed = 1.5
+shader_param/wave_period = 1.8
+shader_param/noise = SubResource( 45 )
+
+[sub_resource type="RectangleShape2D" id=46]
+extents = Vector2( 63.5668, 34.9712 )
+
+[node name="water" type="Sprite"]
+material = SubResource( 43 )
+position = Vector2( 12704.5, 789.054 )
+rotation = 0.00130584
+scale = Vector2( 10.516, 1.68077 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.374878, 24.9711 )
+shape = SubResource( 46 )
+
+[connection signal="item_rect_changed" from="." to="." method="_on_water_item_rect_changed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

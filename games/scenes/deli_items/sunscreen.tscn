@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://deli_items/Asset 17.png" type="Texture" id=1]
+[ext_resource path="res://scripts/deli_items/sunscreen.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 37.5359
+height = 142.842
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("sunscreen_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 531, 260 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "sunscreen"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("sunscreen_sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 531, 260 ), Vector2( 531, 50 ), Vector2( 531, 260 ) ]
+}
+
+[node name="sunscreen" type="Area2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="sunscreen_sprite" type="Sprite" parent="."]
+position = Vector2( 531, 260 )
+rotation = -0.628319
+scale = Vector2( 0.07, 0.09 )
+texture = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 528, 256 )
+rotation = -0.628319
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/sunscreen = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_sunscreen_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

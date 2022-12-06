@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Curve" id=46]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.150148, 106.817 ), 0.0, 0.0, 0, 0, Vector2( 0.247781, -35.5142 ), 0.0, 0.0, 0, 0, Vector2( 0.398669, 82.2772 ), 0.0, 0.0, 0, 0, Vector2( 0.611686, -25.6983 ), 0.0, 0.0, 0, 0, Vector2( 0.872359, 136.265 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=47]
+curve = SubResource( 46 )
+
+[sub_resource type="ParticlesMaterial" id=45]
+emission_shape = 2
+emission_box_extents = Vector3( 800, 800, 1 )
+flag_disable_z = true
+spread = 58.11
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel_curve = SubResource( 47 )
+scale = 2.5
+
+[node name="snow1" type="Particles2D"]
+position = Vector2( 418, 454 )
+amount = 900
+speed_scale = 1.5
+process_material = SubResource( 45 )

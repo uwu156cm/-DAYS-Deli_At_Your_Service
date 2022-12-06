@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Water splash sound effect.mp3-03df56d0d3eaba423aeaa73aa6e6fd34.mp3str"
+
+[deps]
+
+source_file="res://audios/Water splash sound effect.mp3"
+dest_files=[ "res://.import/Water splash sound effect.mp3-03df56d0d3eaba423aeaa73aa6e6fd34.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

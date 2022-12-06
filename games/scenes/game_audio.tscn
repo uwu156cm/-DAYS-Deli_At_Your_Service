@@ -1,0 +1,180 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/storymusic.gd" type="Script" id=1]
+[ext_resource path="res://scripts/music setting.gd" type="Script" id=2]
+[ext_resource path="res://map/Sky.png" type="Texture" id=3]
+[ext_resource path="res://buttons & options/Blank (3).png" type="Texture" id=4]
+[ext_resource path="res://fonts/boorsok.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://buttons/close.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/sfx setting.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 30
+outline_size = 1
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+font_data = ExtResource( 5 )
+
+[node name="game_audio" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="close" parent="TextureRect" instance=ExtResource( 6 )]
+margin_left = 1125.0
+margin_top = 26.0
+margin_right = 1247.0
+margin_bottom = 148.0
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+bus = "Music"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -460.0
+margin_top = 136.0
+margin_right = 460.0
+margin_bottom = 309.0
+
+[node name="Setting1" type="VBoxContainer" parent="GridContainer"]
+margin_right = 920.0
+margin_bottom = 173.0
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+label = "Music"
+audio_stream_player_path = NodePath("../../music")
+bus_name = "Music"
+
+[node name="Label" type="Label" parent="GridContainer/Setting1"]
+margin_right = 920.0
+margin_bottom = 43.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0.976471, 0.678431, 0.0313726, 1 )
+custom_colors/font_color_shadow = Color( 0.976471, 0.678431, 0.0313726, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Music Volume
+"
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="GridContainer/Setting1"]
+margin_top = 47.0
+margin_right = 920.0
+margin_bottom = 63.0
+size_flags_vertical = 4
+min_value = -25.0
+max_value = 0.0
+
+[node name="Buttons" type="HBoxContainer" parent="GridContainer/Setting1"]
+margin_top = 67.0
+margin_right = 920.0
+margin_bottom = 173.0
+size_flags_horizontal = 3
+
+[node name="Play" type="Button" parent="GridContainer/Setting1/Buttons"]
+margin_right = 458.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Play"
+icon = ExtResource( 4 )
+flat = true
+icon_align = 1
+
+[node name="Mute" type="Button" parent="GridContainer/Setting1/Buttons"]
+margin_left = 462.0
+margin_right = 920.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Mute"
+icon = ExtResource( 4 )
+flat = true
+icon_align = 1
+
+[node name="GridContainer2" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -460.0
+margin_top = 369.0
+margin_right = 460.0
+margin_bottom = 542.0
+
+[node name="Setting2" type="VBoxContainer" parent="GridContainer2"]
+margin_right = 920.0
+margin_bottom = 173.0
+size_flags_horizontal = 3
+script = ExtResource( 8 )
+audio_stream_player_path = NodePath("../../sfx")
+bus_name = "sfx"
+
+[node name="Label" type="Label" parent="GridContainer2/Setting2"]
+margin_right = 920.0
+margin_bottom = 43.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0.976471, 0.678431, 0.0313726, 1 )
+custom_colors/font_color_shadow = Color( 0.976471, 0.678431, 0.0313726, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Sound Effect
+"
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="GridContainer2/Setting2"]
+margin_top = 47.0
+margin_right = 920.0
+margin_bottom = 63.0
+size_flags_vertical = 4
+min_value = -25.0
+max_value = 0.0
+
+[node name="Buttons" type="HBoxContainer" parent="GridContainer2/Setting2"]
+margin_top = 67.0
+margin_right = 920.0
+margin_bottom = 173.0
+size_flags_horizontal = 3
+
+[node name="play2" type="Button" parent="GridContainer2/Setting2/Buttons"]
+margin_right = 458.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Play"
+icon = ExtResource( 4 )
+flat = true
+icon_align = 1
+
+[node name="mute2" type="Button" parent="GridContainer2/Setting2/Buttons"]
+margin_left = 462.0
+margin_right = 920.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Mute"
+icon = ExtResource( 4 )
+flat = true
+icon_align = 1
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+bus = "sfx"
+
+[connection signal="value_changed" from="GridContainer/Setting1/HSlider" to="GridContainer/Setting1" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="GridContainer/Setting1/Buttons/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="GridContainer/Setting1/Buttons/Mute" to="." method="_on_Mute_pressed"]
+[connection signal="value_changed" from="GridContainer2/Setting2/HSlider" to="GridContainer2/Setting2" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="GridContainer2/Setting2/Buttons/play2" to="." method="_on_play2_pressed"]
+[connection signal="pressed" from="GridContainer2/Setting2/Buttons/mute2" to="." method="_on_mute2_pressed"]

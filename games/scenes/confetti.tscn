@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.00657895, 0.230263, 0.414474, 0.631579, 0.809211, 0.953947 )
+colors = PoolColorArray( 1, 0.351563, 0.351563, 1, 0.757813, 0.195374, 0.195374, 1, 0.957031, 0.877357, 0.0299072, 1, 0.0774536, 0.210891, 0.734375, 1, 0.910156, 0.0284424, 0.772388, 1, 0.574897, 0.0647888, 0.753906, 1, 0.746942, 0.948826, 0.307627, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+render_priority = 1
+trail_divisor = 2
+emission_shape = 1
+emission_sphere_radius = 128.0
+flag_rotate_y = true
+flag_disable_z = true
+direction = Vector3( 8, 60, 1 )
+spread = 58.4
+gravity = Vector3( 100, 100, 20 )
+initial_velocity = 308.51
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = 100.0
+scale = 5.0
+color_ramp = SubResource( 5 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[node name="confetti" type="Particles2D"]
+position = Vector2( 892, 1 )
+amount = 102
+speed_scale = 1.64
+explosiveness = 1.0
+process_material = SubResource( 6 )

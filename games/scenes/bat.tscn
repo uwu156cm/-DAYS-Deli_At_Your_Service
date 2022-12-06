@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://spooky/unavoidable_roller/Bat3.png" type="Texture" id=1]
+[ext_resource path="res://spooky/unavoidable_roller/Bat2.png" type="Texture" id=2]
+[ext_resource path="res://spooky/unavoidable_roller/Bat4.png" type="Texture" id=3]
+[ext_resource path="res://spooky/unavoidable_roller/Bat1.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="bat" type="Node2D"]
+position = Vector2( 0, 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 134, 118 )
+scale = Vector2( 3.79545, 2.97727 )
+frames = SubResource( 1 )
+frame = 3
+playing = true
+flip_h = true
